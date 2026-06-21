@@ -1,0 +1,16 @@
+def hanoi_solver(n):
+    rod_a=list(range(n,0,-1))
+    rod_b=[]
+    rod_c=[]
+    moves=[]
+    moves.append(f"{rod_a} {rod_b} {rod_c}")
+    move(n,rod_a,rod_c,rod_b,rod_a,rod_b,rod_c,moves)
+    return '\n'.join(moves)
+def move(n, source, destination, auxiliary, rod_a, rod_b, rod_c, moves):
+    if n == 0:
+        return
+    move(n-1, source, auxiliary, destination, rod_a, rod_b, rod_c, moves)
+    disk = source.pop()
+    destination.append(disk)
+    moves.append(f"{rod_a} {rod_b} {rod_c}")
+    move(n-1, auxiliary, destination, source, rod_a, rod_b, rod_c, moves)      
